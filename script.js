@@ -1,20 +1,24 @@
-function primeiraFunction(){
+//function primeiraFunction(){
 
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log("Esperou isso aqui pohhhahaha")
-            resolve()
-        }, 1000)
-    })
+   // return new Promise((resolve) => {
+      //  setTimeout(() => {
+           // console.log("Esperou isso aqui pohhhahaha")
+           // resolve()
+       // }, 1000);
+   // })
+//}
+
+  function getUser(id) {
+   
+    return fetch(`https://reqres.in/api/users?id=${id}`)
+    .then((dado)=> dado.json())
+    .catch((err)=> console.log(err))
 }
 
- async function segundaFuncao() {
+async function exibirUserName(id) {
+     const user = await getUser(id)
 
-    console.log("iniciou")
-
-  await  primeiraFunction()
-
-    console.log("Terminou")
+     console.log(`O nome do usuario é: ${user.data.first_name}`)
 }
 
-segundaFuncao()
+exibirUserName(3)
